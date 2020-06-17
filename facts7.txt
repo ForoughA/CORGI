@@ -1,0 +1,347 @@
+/* arrive facts */
+
+commute(i,home,car,work,1). = 1.0
+travel(i,home,car,meeting,1). = 1.0
+commute(i,home,car,restaurant,1). = 1.0
+travel(i,restaurant,car,home,1). = 1.0
+commute(i,work,car,home,1). = 1.0
+travel(i,meeting,car,home,1). = 1.0
+commute(i,home,uber,wholefoods,1). = 1.0
+travel(i,home,bus,target,1). = 1.0
+commute(i,home,uber,airport,1). = 1.0
+travel(i,airport,plane,nyc,3). = 1.0
+commute(i,jfk,subway,hotel,1). = 1.0
+
+/* stay facts */
+
+weather(rain, monday, 80). = 1.0
+forecast(rain, tuesday, 75). = 1.0
+weather(sunny, wednesday, 40). = 1.0
+forecast(snow, thursday, 30). = 1.0
+weather(sunny, friday, 90). = 1.0 
+forecast(sunny, saturday, 80). = 1.0
+weather(snow, sunday, 20). = 1.0
+
+isInside(friend, starbucks, monday). = 1.0 
+isOutside(i, monday). = 1.0
+isOutside(i, tuesday). = 1.0
+isInside(i, house, today). = 1.0
+isInside(i, ghc, thursday). = 1.0 
+isInside(i, target, friday). = 1.0
+isOutside(friend, monday). = 1.0
+isOutside(brother, monday). = 1.0
+isInside(friend, ghc, thursday). = 1.0 
+isInside(friend, target, friday). = 1.0
+
+carry(i, umbrella, tuesday). = 1.0
+
+building(house). = 1.0
+building(ghc). = 1.0 
+building(target). = 1.0
+building(starbucks). = 1.0
+building(wholefoods). = 1.0
+
+has(ghc, window). = 1.0 
+has(house, window). = 1.0
+has(house, air_conditioner). = 1.0
+has(starbucks, fan). = 1.0
+has(starbucks, window). = 1.0
+has(starbucks, air_conditioner). = 1.0
+isInside(sister, house, monday). = 1.0
+
+close_new(window, ghc, thursday). = 1.0 
+open_new(window, house, monday). = 1.0
+open_new(window, starbucks, monday). = 1.0
+close_new(i, the_windows, at_home). = 1.0
+
+isOutside(hosein, tonight). = 1.0
+
+
+isOn(air_conditioner, house). = 1.0
+isOn(air_conditioner, starbucks). = 1.0
+turn(the_air_conditioner, house) = 1.0
+carry(hosein, umbrella, sunday). = 1.0
+close_new(window, house, today). = 1.0
+
+/* alarm facts */
+
+alarm(me, 1, monday). = 1.0
+alarm(me, 2, tuesday). = 1.0
+alarm(me, 3, wednesday). = 1.0
+alarm(me, 4, thursday). = 1.0
+alarm(me, 5, friday). = 1.0
+alarm(me, 6, saturday). = 1.0
+alarm(me, 12, sunday). = 1.0
+alarm(me, 8, monday). = 1.0
+alarm(me, 11, sunday). = 1.0
+alarm(me, 10, sunday). = 1.0
+
+
+
+
+
+hour(Time1) :- integer(Time1), Time1 >= 0, Time1 =< 24. = 1.0 
+
+minute(Time1) :- not(var(Time1)), integer(Time1), Time1 >= 0, Time1 =< 60. = 1.0
+
+second(Time1) :- not(var(Time1)), integer(Time1), Time1 >= 0, Time1 =< 60. = 1.0
+
+morning :- hour(Time1), Time1 >= 5, Time1 < 12. = 1.0
+
+noon :- hour(Time1), Time1 is 12. = 1.0
+
+afternoon :- hour(Time1), Time1 > 12, Time1 < 18. = 1.0
+
+evening :- hour(Time1), Time1 >= 18, Time1 < 24. = 1.0
+
+midnight :- hour(Time1), Time1 == 24. = 1.0
+
+day :- hour(Time1), Time1 > 6, Time1 =< 18. = 1.0
+
+night :- hour(Time1), Time1 =< 6, Time1 > 18. = 1.0
+
+weekend :- saturday. = 1.0
+weekend :- sunday. = 1.0
+weekday :- monday. = 1.0
+weekday :- tuesday. = 1.0
+weekday :- wednesday. = 1.0
+weekday :- thursday. = 1.0
+weekday :- friday. = 1.0
+
+today(wednesday). = 1.0
+
+/* also add information about months */
+
+isBefore(morning, noon). = 1.0
+isBefore(noon, afternoon). = 1.0
+isBefore(afternoon, evening). = 1.0
+isBefore(evening, midnight). = 1.0
+isBefore(am,pm). = 1.0
+isBefore(day, night). = 1.0
+isBefore(weekday, weekend). = 1.0
+
+isBefore(monday, tuesday). = 1.0
+isBefore(tuesday, wednesday). = 1.0
+isBefore(wednesday, thursday). = 1.0
+isBefore(thursday, friday). = 1.0
+isBefore(friday, saturday). = 1.0
+isBefore(saturday, sunday). = 1.0
+
+
+isAt(Time1,Time2) :- Time1 == Time2. = 1.0
+
+isEarlierThan(Time1,Time2) :- isBefore(Time1,Time3), isEarlierThan(Time3,Time2). = 1.0 
+
+isEarlierThan(Time1,Time2) :- isBefore(Time1,Time2). = 1.0
+
+
+isAfter(Time1,Time2) :- isBefore(Time2,Time1). = 1.0
+
+isLaterThan(Time1,Time2) :- isAfter(Time1,Time2). = 1.0
+
+isLaterThan(Time1,Time2) :- isAfter(Time1,Time3), isLaterThan(Time3,Time2). = 1.0
+
+
+arrive(Person1, Time1, Place1, Place2, Time2, early) :- commute(Person1, Place1, _With, Place2, _Time3), isEarlierThan(Time1, Time2). = 1.0
+
+arrive(Person1, Time1, Place1, Place2, Time2, ontime) :- commute(Person1, Place1, _With, Place2, _Time3), isAt(Time1, Time2). = 1.0
+
+arrive(Person1, Time1, Place1, Place2, Time2, ontime) :- commute(Person1, Place1, _With, Place2, Time3), hour(Time1), hour(Time2), Time2 is Time1+Time3. = 1.0
+
+
+arrive(Person1, Time1, Place1, Place2, Time2, early) :- commute(Person1, Place1, _With, Place2, Time3),  hour(Time1), hour(Time2), Time2 > Time1+Time3. = 1.0
+
+arrive(Person1, Time1, Place1, Place2, Time2, late) :- commute(Person1, Place1, _With, Place2, _Time3), isLaterThan(Time1, Time2). = 1.0
+
+
+arrive(Person1, Time1, Place1, Place2, Time2, late) :- commute(Person1, Place1, _With, Place2, Time3), hour(Time1), hour(Time2), Time2 < Time1+Time3. = 1.0
+
+
+weatherBad(Date1, Temp1) :- weather(rain, Date1, Temp1). = 1.0
+
+weatherBad(Date1, Temp1) :- weather(snow, Date1, Temp1). = 1.0
+
+status(Person1, dry, Date1) :- weatherBad(Date1, _), carry(Person1, umbrella, Date1), isOutside(Person1, Date1). = 1.0
+
+status(Person1, dry, Date1) :- isInside(Person1, Building1, Date1), building(Building1). = 1.0
+
+status(Building1, dry, Date1) :- weather(rain, Date1, _), has(Building1, window), building(Building1), close_new(window, Building1, Date1). = 1.0
+
+status(Building1, wet, Date1) :- weather(rain, Date1, _), has(Building1, window), building(Building1), open_new(window, Building1, Date1). = 1.0
+
+status(Building1, wet, Date1) :- weather(snow, Date1, _), has(Building1, window), building(Building1), open_new(window, Building1, Date1). = 1.0
+
+status(Person1, wet, Date1) :- weatherBad(Date1, _), not(carry(Person1, umbrella, Date1)), isOutside(Person1, Date1). = 1.0
+
+status(Person1, warm, Date1) :- close_new(window, Building1, Date1), isInside(Person1, Building1, Date1), has(Building1, window). = 1.0
+
+status(Person1, cold, Date1) :- open_new(window, Place1, Date1), isInside(Person1, Building1, Date1), has(Building1, window). = 1.0
+
+status(Person1, cool, Date1) :- isOn(air_conditioner, Building1), isInside(Person1, Building1, Date1), has(Building1, air_conditioner). = 1.0
+
+stay(Person1, Status, Date1) :- status(Person1, Status, Date1). = 1.0
+
+
+
+
+wake(Person1, Time1, Date1) :- alarm(Person1, Time1, Date1). = 1.0
+
+
+get(Person1, Item1, Time1) :- buy(Person1, Item1, Time2), isEarlierThan(Time2, Time1). = 1.0
+
+buy(Person1, Item1, Time1) :- budget(Person1, Item1, Amount1), price(Item1, Amount2), Amount2 =< Amount1. = 1.0 
+
+sale(sketchbooks, monday, 80). = 1.0
+price(sketchbooks, 10). = 1.0
+budget(forough, sketchbooks, 10). = 1.0
+
+budget(i, eggs, 5). = 1.0
+budget(i, breakfast, 5). = 1.0
+budget(i, spinach, 3). = 1.0
+budget(i, water, 2). = 1.0
+budget(i, milk, 5). = 1.0
+budget(i, tomatoes, 4). = 1.0
+budget(i, tissue, 10). = 1.0
+budget(i, toothpaste, 2). = 1.0
+budget(i, detergent, 4). = 1.0
+
+price(eggs, 6). = 1.0
+price(pancakes, 9). = 1.0
+price(bread, 3). = 1.0
+price(spinach, 4). = 1.0
+price(water, 1). = 1.0
+cost(milk, 3). = 1.0
+cost(detergent, 5). = 1.0
+cost(tomatoes, 3). = 1.0
+cost(tissue, 12). = 1.0 
+cost(toothpaste, 4). = 1.0
+
+sale(eggs, monday, 3). = 1.0
+sale(tissue, wednesday, 3). = 1.0
+sale(pancakes, thursday, 4). = 1.0
+sale(detergent, tuesday, 1). = 1.0
+sale(toothpaste, wednesday, 2). = 1.0
+sale(spinach, monday, 2). = 1.0
+
+
+
+give(Person1, Item1, Person2) :- have(Person1, Item1), need(Person2, Item1). = 1.0
+
+buy(Person1, Item1, _) :- not(have(Person2, Item1)), Person2 \== Person1, need(Person2, Item1). = 1.0
+buy(i, prersent, tuesday). = 1.0
+
+go(me, grocery_store). = 1.0
+
+have(i, shampoo). = 1.0
+possess(i, conditioner). = 1.0
+have(i, sponges). = 1.0
+possess(i, apples). = 1.0
+have(i, peaches). = 1.0
+possess(i, blueberries). = 1.0
+have(i, salmon). = 1.0
+possess(i, scallops). = 1.0
+have(i, leftovers). = 1.0
+possess(i, broccoli). = 1.0
+have(i, peas). = 1.0
+possess(friend, avocadoes). = 1.0
+have(friend, tomatoes). = 1.0
+possess(friend, bagels). = 1.0
+have(friend, pancakes). = 1.0
+possess(friend, bread). = 1.0
+have(friend, celery). = 1.0
+
+need(i, vegetables). = 1.0
+need(i, breakfast). = 1.0
+need(friend, soap). = 1.0
+require(friend, fruits). = 1.0
+need(friend, meat). = 1.0
+
+
+
+notify(Person1, lia, Action1) :- email(Person1, Action1). = 1.0
+
+
+do(Person1, Action1) :- remind(Person1, Action1). = 1.0
+
+remind(Person1, Action1) :- notify(Person1, lia, Action1). = 1.0
+
+
+email(forough, body). = 1.0
+
+email(me, renewpassport). = 1.0
+message(me, buygroceries). = 1.0
+email(me, friendsbirthday). = 1.0
+email(me, sleep). = 1.0
+message(me, dotaxes). = 1.0
+
+
+charge(Electronics1, Charge1) :- plug(Electronics1), charge(Electronics1, Charge2), Charge1 > Charge2. = 1.0
+
+run(dry, battery) :- charge(battery, Charge1), Charge1 < 20. = 1.0
+
+plug(battery). = 1.0 
+
+
+
+goBad(Food1, Time1) :- have(i, Food1), food(Food1), isInside(Food1, cupboard, Time1), weather(_, Time1, Temperature1), Temperature1 > 30. = 1.0 
+
+stayFresh(Food1,Time1) :- have(i, Food1), food(Food1), weather(_, Time1, Temperature1), Temperature1 < 30. = 1.0
+
+stayFresh(Food1,Time1) :- have(i, Food1), food(Food1), isInside(Food1, fridge, Time1). = 1.0
+
+
+food(avocadoes). = 1.0
+food(bagels). = 1.0
+food(celery). = 1.0
+food(leftovers). = 1.0 
+food(vegetables). = 1.0
+food(fruits). = 1.0
+food(meat). = 1.0
+
+
+isInside(peaches, fridge, today). = 1.0
+isStored(salmon, freezer, today). = 1.0
+isInside(leftovers, fridge, today). = 1.0
+isStored(apples, cupboard, today). = 1.0
+isInside(blueberries, closet, today). = 1.0
+isStored(scallops, closet, today). = 1.0
+isInside(vegetables, fridge, today). = 1.0
+
+isStored(fruits, closet, saturday). = 1.0
+isInside(vegetables, closet, saturday). = 1.0
+isInside(meat, freezer, saturday). = 1.0
+
+
+
+hasTemperature(fridge, below(30)). = 1.0
+
+
+
+buy(i, people, present). = 1.0
+
+set(i,email,read). = 1.0
+
+turn(i,the_air_conditioner). = 1.0
+notify(i,my_colleagues,of_the_conflict). = 1.0
+
+pay(i, less_money, Item1) :- sale(Item1), need(Person1, Item1). = 1.0
+
+sale(restaurant). = 1.0
+need(i, restaurant). = 1.0
+sale(gas_station). = 1.0
+need(i, gas_station). = 1.0
+go(i,to_a_better_rated_restaurant). = 1.0
+bring(i, an_umbrella). = 1.0
+carry(i, an_umbrella). = 1.0
+have(i, water). = 1.0
+need(i, basketballs). = 1.0
+sale(basketballs). = 1.0
+
+go(i,the_grocery_store). = 1.0
+give(i, a_present, them). = 1.0
+give(i, present, them). = 1.0
+
+go(i,to_the_gym). =1.0
+go(i,to_the_gym, to_practice). =1.0
+attend(i, talk, listen). =1.0
+attend(i, talk). =1.0

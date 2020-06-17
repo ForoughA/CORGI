@@ -1,0 +1,81 @@
+commute ~ travel = 1.0
+commute ~ go = 1.0
+
+arrive ~ reach = 1.0
+
+weather ~ forecast = 1.0
+
+today ~ wednesday = 1.0
+
+have ~ possess = 1.0
+
+
+alarm ~ awake = 1.0
+alarm ~ ring = 1.0
+alarm ~ alert = 1.0
+
+
+get ~ acquire = 1.0
+
+buy ~ purchase = 1.0
+have ~ possess = 1.0
+
+originalPrice ~ cost = 1.0
+originalPrice ~ price = 1.0
+sale ~ discount = 1.0
+
+need ~ require = 1.0
+
+
+breakfast ~ bread = 1.0
+breakfast ~ pancakes = 1.0
+breakfast ~ bagels = 1.0
+
+vegetables ~ spinach = 1.0
+vegetables ~ tomatoes = 1.0
+vegetables ~ avocadoes = 1.0
+vegetables ~ broccoli = 1.0
+vegetables ~ peas = 1.0
+vegetables ~ celery = 1.0
+
+fruits ~ apples = 1.0
+fruits ~ peaches = 1.0
+fruits ~ blueberries = 1.0
+
+meat ~ salmon = 1.0
+meat ~ scallops = 1.0
+
+soap ~ shampoo = 1.0
+soap ~ conditioner = 1.0
+soap ~ detergent = 1.0
+
+
+food ~ perishable = 1.0
+
+house ~ home = 1.0
+ghc ~ school = 1.0
+
+store ~ wholefoods = 1.0
+store ~ target = 1.0
+
+stayFresh ~ fresh = 1.0
+goBad ~ rot = 1.0
+goBad ~ spoil = 1.0
+fridge ~ freezer = 1.0
+cupboard ~ closet = 1.0
+
+isInside ~ isStored = 1.0
+
+isOn ~ turn = 1.0
+
+me ~ i = 1.0
+fan ~ air_conditioner = 1.0
+the_air_conditioner ~ air_conditioner = 1.0
+
+jfk ~ airport = 1.0
+
+
+email ~ message = 1.0
+
+carry ~ bring = 1.0
+

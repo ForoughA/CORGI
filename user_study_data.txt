@@ -1,0 +1,12 @@
+If I have an early morning meeting then wake me up early because I want to be ontime.
+If there are thunderstorms in the forecast within a few hours then remind me to close the windows because I want to keep my home dry.
+If I schedule an appointment that overlaps with another appointment then notify me immediately because I want to let my colleagues know of the conflict.
+If I search for a gas station in the navigation app and there is a cheaper gas station that is not too much further away then ask me immediately whether I want to switch the destination to the new gas station because I want to save money.
+If I search for a restaurant in the navigation app and there is a cheaper restaurant with a similar rating then notify me immediately whether I want to switch the destination to the new restaurant because I want to save money.
+If I receive an email about a critical software update then notify me immediately because I want to keep my computers safe from malware.
+If it's going to rain in the afternoon then remind me to bring an umbrella because I want to remain dry.
+If I haven't been to the gym for more than 3 days then remind me to go to the gym because I want to stay fit.
+If I receive an email about water shut off then remind me about it a day before because I want to make sure I have access to water when I need it.
+If my calender is clear today, then remind me to go to gym in the afternoon, because I want to keep myself healthy.
+%If I slept less than 6 hours the night before then remind me to get coffee because I want to be awake in class.
+%If it snows tonight then wake me up early because i want to arrive to work early.
