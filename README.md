@@ -1,6 +1,6 @@
 # CORGI
 
-This is the code for the [Conversational Neuro-Symbolic Commonsense Reasoning](PLACE_HOLDER).
+This is the code for the [Conversational Neuro-Symbolic Commonsense Reasoning](https://arxiv.org/abs/2006.10022).
 
 ## Dependencies
 1. PyTorch 
