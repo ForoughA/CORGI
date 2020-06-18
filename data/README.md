@@ -12,7 +12,7 @@ if you use this dataset in your research please cite our paper with the followin
 @article{arabshahi2020conversational,
   title={Conversational Neuro-Symbolic Commonsense Reasoning},
   author={Arabshahi, Forough and Lee, Jennifer and Gawarecki, Mikayla and Mazaitis, Kathryn and Azaria, Amos and Mitchell, Tom},
-  journal={arXiv preprint arXiv:},
+  journal={arXiv preprint arXiv:2006.10022},
   year={2020}
 }
 ```
